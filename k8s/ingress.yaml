@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  name: microservices-ingress
+spec:
+  rules:
+  - host: microservices.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: user-service
+            port:
+              number: 80
+        path: /user
+        pathType: Exact
+      - backend:
+          service:
+            name: order-service
+            port:
+              number: 80
+        path: /order
+        pathType: Exact
+status:
+  loadBalancer: {}
